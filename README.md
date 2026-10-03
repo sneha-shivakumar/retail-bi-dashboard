@@ -1,38 +1,53 @@
 # Retail Analytics Dashboard
 
-An interactive BI dashboard analysing retail transaction data — built to support sales, demographic, and regional decision-making for a retail business.
+A three-part interactive BI project analysing retail transaction data — built to support sales, demographic, and loyalty decision-making for a retail business.
 
-**[View the live, interactive dashboard on Tableau Public →](https://public.tableau.com/app/profile/sneha.kamanahalli.shivakumar/viz/RetailAnalyticsDashboard_17910164092350/RetailAnalyticsDashboard)**
+## Live dashboards
 
-![Retail Analytics Dashboard](images/dashboard-overview.png)
+| Dashboard | Link | Covers |
+|---|---|---|
+| **Sales Overview** | [View on Tableau Public →](https://public.tableau.com/app/profile/sneha.kamanahalli.shivakumar/viz/retail-bi-dashboard/SalesOverview) | Revenue by category, payment method breakdown, revenue by US state |
+| **Customer Segmentation** | [View on Tableau Public →](https://public.tableau.com/app/profile/sneha.kamanahalli.shivakumar/viz/retail-customer-segmentation/CustomerSegmentation) | Spend by age group and gender, category preference by gender, seasonal purchasing patterns |
+| **Loyalty & Engagement** | [View on Tableau Public →](https://public.tableau.com/app/profile/sneha.kamanahalli.shivakumar/viz/retail-loyalty-engagement/LoyaltyEngagement) | Subscription status breakdown, purchase frequency distribution, AOV by subscription status |
+
+![Sales Overview Dashboard](images/dashboard-overview.png)
 
 ## The problem
 
-A retail business needs a single view that answers three different stakeholder questions at once: which product categories drive revenue, where customers are spending geographically, and how spending varies across customer demographics. This dashboard brings those three views together so a sales, marketing, or merchandising team can act on them without needing to run their own analysis.
+A retail business needs a single analytics suite that answers questions across three different stakeholder groups: which product categories and regions drive revenue (sales), how spending varies across customer demographics (marketing), and how engaged and loyal the customer base actually is (retention). This project splits those concerns into three focused, purpose-built dashboards rather than one overcrowded view.
 
 ## The data
 
 **Source:** [Kaggle — Customer Shopping Latest Trends Dataset](https://www.kaggle.com/datasets/bhadramohit/customer-shopping-latest-trends-dataset)
-3,900 retail transactions, covering product category, purchase amount, customer demographics, and US state-level location data.
+3,900 retail transactions, covering product category, purchase amount, customer demographics, payment method, subscription status, purchase frequency, and US state-level location data.
 
-**A scoping note:** the original brief for this project called for revenue trend analysis over time. This dataset has no date field, so that metric isn't reliably buildable from it — rather than force a misleading time series, the dashboard focuses on the segmentations the data actually supports well: category, location, age, and gender.
+**A scoping note:** the original brief for this project called for revenue trend analysis over time. This dataset has no date field, so that metric isn't reliably buildable from it — rather than force a misleading time series, the dashboards focus on the segmentations the data actually supports well: category, location, demographics, payment behaviour, and loyalty signals.
 
-## What's in the dashboard
+## Key findings
 
-**Revenue by Category** — Clothing is the clear leader at $104,264 in total revenue, more than Accessories ($74,200) and Footwear ($36,093) combined, with Outerwear trailing at $18,524.
+**Sales Overview**
+- Clothing leads revenue at $104,264 — more than Accessories ($74,200) and Footwear ($36,093) combined
+- Spend is evenly spread across all 6 payment methods (Credit Card leads narrowly at ~$38K)
+- Spend is geographically concentrated in a cluster of central/western US states
 
-**Customer Segmentation (Age × Gender)** — spend is fairly consistent across age brackets, with the 50-59 group leading slightly. Male customers show a notably higher share of total spend within each age bracket than female customers in this dataset.
+**Customer Segmentation**
+- Spend is fairly consistent across age brackets, with 50-59 leading narrowly
+- Male customers out-spend female customers in every single product category
+- Seasonal spend is nearly flat year-round (56K-60K each season) — no strong seasonality in this dataset
 
-**Revenue by Location** — a US state-level map shaded by total purchase amount, highlighting which states drive the most spend geographically — useful for region-specific marketing or inventory decisions.
+**Loyalty & Engagement**
+- Only ~27% of customers are subscribed (1,053 of 3,900) — a clear retention opportunity
+- Purchase frequency is evenly distributed across all 7 cadences (Weekly through Annually) — no dominant buying pattern
+- Average order value is nearly identical for subscribers and non-subscribers (~$60 vs ~$59) — subscription drives frequency, not basket size
 
 ## How it was built
 
 - **Tool:** Tableau Public (chosen over Power BI as this was built on macOS, where Power BI Desktop isn't available)
-- **Data prep:** the dataset was already clean (no missing values or duplicates), so work focused on binning (10-year age groups) and geographic role assignment for the Location field
-- **Design choices:** each sheet uses a single, consistent measure (Purchase Amount) so the three views stay comparable at a glance; colour is used meaningfully (Gender split, spend intensity) rather than decoratively
+- **Data prep:** the dataset was already clean (no missing values or duplicates); work focused on age binning (10-year groups) and geographic role assignment for the Location field
+- **Structure:** split into three dashboards rather than one, so each serves a distinct stakeholder question without overcrowding
 
 ## What I'd do next
 
 - Add a time dimension if transaction-date data becomes available, to support real trend analysis
-- Add a customer-level retention/frequency view using the dataset's "Frequency of Purchases" field
 - Build a drill-down from the location map into category breakdown per state
+- Investigate the gender spending gap further with a targeted marketing angle
