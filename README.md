@@ -1,6 +1,6 @@
 # Retail Analytics Dashboard
 
-A three-part BI project analysing retail transaction data, covering sales, customer demographics, and loyalty.
+An interactive BI dashboard analysing retail transaction data — built to support sales, demographic, and regional decision-making for a retail business.
 
 ## Live dashboards
 
